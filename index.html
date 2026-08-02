@@ -7,11 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 
+        Student: Simarpreet Saini
+        Learning Reflection:
+        - Used semantic HTML elements like <nav> and <section> to structure the page correctly.
+        - Set up a viewport meta tag so that media queries target the device screen width properly.
+    -->
 
-    <!-- Navbar -->
+    <!-- Navbar Section: Organized for Flexbox layout -->
     <nav>
+        <!-- Brand Logo on the left -->
         <div class="logo">Logo</div>
 
+        <!-- Navigation Links in the center (Will be hidden on mobile) -->
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
             <li><a href="#">Services</a></li>
@@ -19,14 +27,20 @@
             <li><a href="#">Contact Us</a></li>
         </ul>
 
+        <!-- Username display/button on the right -->
         <div class="user">Username</div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section: Split into left (text) and right (image) containers -->
+    <!-- 
+        Learning Note:
+        I chose to put text in the '.left' div and the image in the '.right' div.
+        This default order naturally stacks with text first, then image, which matches
+        the mobile mockup when we change the flex direction to column.
+    -->
     <section class="hero">
 
         <div class="left">
-
             <h1>
                 Revitalize Your <br>
                 Clothes with Expert <br>
@@ -40,13 +54,11 @@
             </p>
 
             <button>Book a service today!</button>
-
         </div>
 
         <div class="right">
-
-            <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600" alt="Laundry">
-
+            <!-- Used descriptive alt attribute for screen readers -->
+            <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600" alt="Laundry Machine and Detergent">
         </div>
 
     </section>

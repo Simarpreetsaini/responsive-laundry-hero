@@ -1,3 +1,10 @@
+/* 
+   Student: Simarpreet Saini
+   Responsive CSS for Laundry Hero Section
+   Learning Reflections & Experiments are noted throughout the stylesheet.
+*/
+
+/* Base Styles & Reset */
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +16,11 @@ body {
   background: #fff;
 }
 
+/* 
+   Navbar Styling 
+   - Used Flexbox instead of 'display: inline' as requested by the assignment.
+   - 'justify-content: space-between' keeps Logo, Nav links, and Username separated.
+*/
 nav {
   width: 100%;
   padding: 20px 6%;
@@ -23,6 +35,12 @@ nav {
   color: #394b63;
 }
 
+/* 
+   Learning Note:
+   Instead of using 'display: inline' or 'display: inline-block' on <li>,
+   I applied 'display: flex' on the parent '.nav-links' ul. 
+   This makes it much easier to manage spacing using 'gap' instead of margins!
+*/
 .nav-links {
   list-style: none;
   display: flex;
@@ -37,6 +55,12 @@ nav {
   text-decoration: none;
   color: #666;
   font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #1da1f2;
 }
 
 .user {
@@ -47,14 +71,18 @@ nav {
   font-weight: bold;
 }
 
+/* 
+   Hero Section Styling
+   - Default Desktop layout uses Flexbox row to place text (.left) and image (.right) side-by-side.
+*/
 .hero {
   width: 90%;
-  min-height: 85vh;
+  min-height: 80vh;
   margin: auto;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 40px;
 }
 
 .left {
@@ -67,14 +95,15 @@ nav {
 }
 
 .right img {
-  width: 80%;
+  width: 90%;
   max-width: 500px;
+  height: auto;
 }
 
 .left h1 {
-  font-size: 58px;
+  font-size: 56px;
   color: #4a5568;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .left span {
@@ -96,14 +125,25 @@ button {
   background: #1da1f2;
   color: white;
   font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-/* =======================
-        TABLET
-======================= */
+button:hover {
+  background: #0d8ddb;
+}
 
+/* ==========================================================================
+   BREAKPOINT 1: TABLET VIEW (max-width: 1024px)
+   - Resizes text sizes and navbar elements so everything fits without wrapping.
+   - Layout remains side-by-side.
+   ========================================================================== */
 @media screen and (max-width: 1024px) {
+  /* 
+     Learning: Shrinking paddings and font sizes to keep elements aligned on medium screens.
+     The layout is still wide enough to keep columns side-by-side.
+  */
   nav {
     padding: 18px 4%;
   }
@@ -113,7 +153,7 @@ button {
   }
 
   .nav-links {
-    gap: 18px;
+    gap: 20px;
   }
 
   .nav-links a {
@@ -127,115 +167,118 @@ button {
 
   .hero {
     width: 95%;
+    gap: 20px;
   }
 
-  .left h1 {
-    font-size: 44px;
-  }
-
-  .left p {
-    font-size: 18px;
-  }
-
-  .right img {
-    width: 90%;
-  }
-
-  button {
-    font-size: 16px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  nav {
-    padding: 20px;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .logo {
-    font-size: 30px;
-  }
-
-  .user {
-    font-size: 13px;
-    padding: 10px 16px;
-  }
-
-  .hero {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 30px;
-    padding: 20px;
-  }
-
-  .left,
-  .right {
-    width: 100%;
-  }
-
-  .left {
-    order: 1;
-  }
-
-  .right {
-    order: 2;
-  }
-
+  /* 
+     Experimented with heading font sizes:
+     - 48px felt too large and made text wrap into 4 lines.
+     - 42px fits perfectly in 3 lines without overlapping the image.
+  */
   .left h1 {
     font-size: 42px;
   }
 
   .left p {
-    font-size: 18px;
-    max-width: 100%;
-  }
-
-  button {
-    width: 100%;
-    max-width: 320px;
+    font-size: 17px;
+    margin: 20px 0;
   }
 
   .right img {
-    width: 80%;
+    width: 85%;
   }
 
-  /* Center the text */
-  .left p,
-  .left h1 {
-    margin-left: auto;
-    margin-right: auto;
+  button {
+    font-size: 16px;
+    padding: 15px 35px;
   }
 }
 
-@media screen and (max-width: 480px) {
+/* ==========================================================================
+   BREAKPOINT 2: MOBILE VIEW (max-width: 767px)
+   - Triggers at 767px so 768px (like the iPad Mini) remains in tablet layout.
+   - Hides navigation links in the navbar, showing only Logo and Username.
+   - Stacks the hero columns vertically (text on top, image below).
+   ========================================================================== */
+@media screen and (max-width: 767px) {
+  nav {
+    padding: 15px 20px;
+  }
+
+  /* 
+     Task: Hide links in mobile view.
+     Only Logo and Username are displayed in the navbar.
+  */
+  .nav-links {
+    display: none;
+  }
+
   .logo {
     font-size: 24px;
   }
 
   .user {
-    font-size: 12px;
+    font-size: 13px;
     padding: 8px 14px;
   }
 
+  /* 
+     Task: Stacking layout vertically.
+     Using 'flex-direction: column' so the image container wraps below the text container.
+     Left aligned layout matching the mobile design mockup.
+  */
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px;
+    margin-top: 20px;
+    gap: 30px;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+
+  /* 
+     Experiment Reflection:
+     I tried 'text-align: center' initially, but the mockup shows the text left-aligned, 
+     matching the logo. So I kept it left-aligned ('text-align: left').
+  */
   .left h1 {
-    font-size: 34px;
+    font-size: 32px;
+    line-height: 1.3;
   }
 
   .left p {
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 100%;
+    margin: 15px 0;
   }
 
+  /* 
+     Making the CTA button stand out on mobile screens.
+     It fills most of the width but doesn't stretch completely edge-to-edge.
+  */
   button {
-    font-size: 16px;
+    width: 100%;
+    max-width: 320px;
     padding: 16px;
+    font-size: 16px;
   }
 
+  /* Centering the image on mobile to balance the bottom of the section */
+  .right {
+    text-align: center;
+  }
+
+  /* 
+     Struggled with image size: 
+     Initially, the image overflowed. Fixed it by setting width to 85% and max-width 320px.
+  */
   .right img {
-    width: 95%;
+    width: 85%;
+    max-width: 320px;
   }
 }
